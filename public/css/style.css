@@ -56,6 +56,10 @@ body{
 .card{
     padding: 0.7rem;
     margin-bottom: 2rem;
+    /* height: 27rem !important; */
+}
+.card-main{
+    height: 27rem !important;
 }
 .card-img-top{
     border-radius: 1rem !important;
