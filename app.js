@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV != "production"){
+    require("dotenv").config();
+}
+// console.log(process.env.SECRET);
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -16,6 +21,7 @@ const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const MongoURL = "mongodb://127.0.0.1:27017/wanderLust";
+// const dbUrl = process.env.ATLASDB_URL;
 
 main().then(()=>{
     console.log("connected to db");
@@ -35,7 +41,7 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")))
 
 const sessionOptions = {
-    secret : "mysupersecretstring",
+    secret : process.env.SECRET ,
     resave:false ,
     saveUninitialized: true,
     cookie : {
@@ -55,9 +61,9 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.get("/",(req,res)=>{
-    res.send("hi i am root");
-});
+// app.get("/",(req,res)=>{
+//     res.send("hi i am root");
+// });
 
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");

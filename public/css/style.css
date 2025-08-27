@@ -101,7 +101,15 @@ body{
 /* show page */
 .show-img{
     height: 40vh;
+    object-fit: contain !important;
+    margin-bottom: 1rem;
 }
 .btns{
     display: flex;
+}
+
+/* MAP */
+#map{
+    height: 400px;
+    width: 80vh;
 }
